@@ -3,7 +3,7 @@
 /**
  * Portfolio
  *
- * @author Mark Roland <mark@markroland.com>
+ * @author Mark Roland (markroland.com)
  * @copyright Mark Roland, 2011
  * @version 1.0
  *
