@@ -1,6 +1,6 @@
 portfolio.class.php
 
-Mark Roland <mark@markroland.com>
+Mark Roland <first name @ full name dot com>
 
 10/11/2011
 
