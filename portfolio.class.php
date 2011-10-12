@@ -10,12 +10,12 @@
  **/
 class portfolio{
 
-	/**
-	 * Get information about a portfolio project
-	 * @param integer $index_value A unique project identifier
-	 * @param integer $index The type of $index_value. Either project_id or url_safe_title
-	 * @return array Summary of project information
-	 */
+  /**
+   * Get information about a portfolio project
+   * @param integer $index_value A unique project identifier
+   * @param integer $index The type of $index_value. Either project_id or url_safe_title
+   * @return array Summary of project information
+   */
   function get_project($index_value, $index = 'project_id'){
     switch($index){
       case 'url_safe_title':
@@ -47,11 +47,11 @@ class portfolio{
     return $row;
   }
 
-	/**
-	 * Get the disciplines related to a project
-	 * @param integer $project_id A unique project ID
-	 * @return array Summary of disciplines used
-	 */
+  /**
+   * Get the disciplines related to a project
+   * @param integer $project_id A unique project ID
+   * @return array Summary of disciplines used
+   */
   function get_project_disciplines($project_id){
     $query = sprintf("SELECT discipline.*
                       FROM `markr34_portfolio`.`project_discipline`
@@ -65,10 +65,10 @@ class portfolio{
   }
 
   /**
-	 * Get items related to a project
-	 * @param integer $project_id A unique project ID
-	 * @return array Summary of items
-	 */
+   * Get items related to a project
+   * @param integer $project_id A unique project ID
+   * @return array Summary of items
+   */
   function get_project_items($project_id){
     $query = sprintf("SELECT project_item.*
                       FROM `markr34_portfolio`.`project_item`
@@ -81,10 +81,10 @@ class portfolio{
   }
 
   /**
-	 * Get items related to a project
-	 * @param integer $project_id A unique project ID
-	 * @return array Summary of items
-	 */
+   * Get items related to a project
+   * @param integer $project_id A unique project ID
+   * @return array Summary of items
+   */
   function get_project_keywords($project_id){
     $query = sprintf("SELECT keyword.*
                       FROM `markr34_portfolio`.`project_keyword`
@@ -97,11 +97,11 @@ class portfolio{
     return $disciplines;
   }
 
-	/**
-	 * Get the disciplines related to a project
-	 * @param integer $project_id A unique project ID
-	 * @return array Summary of disciplines used
-	 */
+  /**
+   * Get the disciplines related to a project
+   * @param integer $project_id A unique project ID
+   * @return array Summary of disciplines used
+   */
   function get_project_mediums($project_id){
     $query = sprintf("SELECT medium.*
                       FROM `markr34_portfolio`.`project_medium`
@@ -115,10 +115,10 @@ class portfolio{
   }
 
   /**
-	 * Get the disciplines related to a project
-	 * @param integer $project_id A unique project ID
-	 * @return array Summary of disciplines used
-	 */
+   * Get the disciplines related to a project
+   * @param integer $project_id A unique project ID
+   * @return array Summary of disciplines used
+   */
   function get_related_projects($project_id){
     $query = sprintf("SELECT related_projects.project_id_A as project_id, project.title, project.url_safe_title
                       FROM `markr34_portfolio`.`related_projects`
