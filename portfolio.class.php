@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Abenity Twitter Class
+ * Portfolio
  *
- * @author Mark Roland <mark@abenity.com>
+ * @author Mark Roland <mark@markroland.com>
  * @copyright Mark Roland, 2011
  * @version 1.0
  *
