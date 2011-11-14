@@ -139,6 +139,49 @@ class portfolio{
     return $related_projects;
   }
 
+  /**
+   * Report the number of times that a project was viewed.
+   * @param integer $project_id A unique project ID
+   * @return array A multidimensional array of hits and date values.
+   */
+  function get_project_hits($project_id){
+    $query = sprintf("SELECT * FROM `markr34_portfolio`.`project_hits` WHERE project_id=%d ORDER BY date ASC",
+											mysql_real_escape_string($project_id));
+		$result = mysql_query($query);
+		while( $row = mysql_fetch_array($result,MYSQL_ASSOC) ){
+			$hits['data'][] = $row['hits'];
+			$hits['labels'][] = $row['date'];
+		}
+    return $hits;
+  }
+
+  /**
+   * Search HTTP logs for google queries that led to a specific project
+   * @param integer $project_id A unique project ID
+   * @return array An array of query strings
+   */
+  function get_project_queries($project_id = NULL){
+	
+		if( !empty($project_id) ){
+			$details = $this->get_project($project_id);
+	    $query = sprintf("SELECT referrer
+												FROM `markr34_log`.`http_request`
+												WHERE resource LIKE '/project/%s%%'
+													AND referrer LIKE '%%google.com%%'",
+												mysql_real_escape_string($details['overview']['url_safe_title']));
+		}else{
+	    $query = sprintf("SELECT referrer
+												FROM `markr34_log`.`http_request`
+												WHERE referrer LIKE '%%google.com%%'");			
+		}
+		$result = mysql_query($query);
+		while( $row = mysql_fetch_array($result,MYSQL_ASSOC) ){
+			if( preg_match('/q=([.]*[^&]+)/', $row['referrer'], $matches) )
+				$results[] = substr( urldecode($matches[0]), 2);
+		}
+    return $results;
+  }
+
 } // END Class
 
 ?>
