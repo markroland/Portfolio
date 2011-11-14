@@ -28,7 +28,7 @@ class portfolio{
 
     $result = mysql_query($query);
     $row['overview'] = mysql_fetch_array($result,MYSQL_ASSOC);
-    
+
     $completion_date = explode('-', $row['overview']['completion_date']);
     if( substr($row['overview']['completion_date'], 4, 6) == '-00-00' ){
       $row['overview']['formatted_date'] = date('Y', strtotime( str_replace('-00-00', '-01-01', $row['overview']['completion_date']) ));
@@ -161,24 +161,24 @@ class portfolio{
    * @return array An array of query strings
    */
   function get_project_queries($project_id = NULL){
-	
-		if( !empty($project_id) ){
-			$details = $this->get_project($project_id);
-	    $query = sprintf("SELECT referrer
-												FROM `markr34_log`.`http_request`
-												WHERE resource LIKE '/project/%s%%'
-													AND referrer LIKE '%%google.com%%'",
-												mysql_real_escape_string($details['overview']['url_safe_title']));
-		}else{
-	    $query = sprintf("SELECT referrer
-												FROM `markr34_log`.`http_request`
-												WHERE referrer LIKE '%%google.com%%'");			
-		}
-		$result = mysql_query($query);
-		while( $row = mysql_fetch_array($result,MYSQL_ASSOC) ){
-			if( preg_match('/q=([.]*[^&]+)/', $row['referrer'], $matches) )
-				$results[] = substr( urldecode($matches[0]), 2);
-		}
+
+    if( !empty($project_id) ){
+    $details = $this->get_project($project_id);
+    $query = sprintf("SELECT referrer
+                      FROM `markr34_log`.`http_request`
+                      WHERE resource LIKE '/project/%s%%'
+                        AND referrer LIKE '%%google.com%%'",
+                      mysql_real_escape_string($details['overview']['url_safe_title']));
+    }else{
+    $query = sprintf("SELECT referrer
+                      FROM `markr34_log`.`http_request`
+                      WHERE referrer LIKE '%%google.com%%'");
+    }
+    $result = mysql_query($query);
+    while( $row = mysql_fetch_array($result,MYSQL_ASSOC) ){
+    if( preg_match('/q=([.]*[^&]+)/', $row['referrer'], $matches) )
+    	$results[] = substr( urldecode($matches[0]), 2);
+    }
     return $results;
   }
 
