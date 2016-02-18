@@ -1,7 +1,4 @@
-# Wellness MySQL Stored Procedures
-# Version 0.1
-# June 19, 2014
-# Update using: mysql -u abenity -p abenity_wellness < /home/abenity/libraries/wellness/stored-procedures.sql
+# Portfolio MySQL Stored Procedures
 
 # Set temporary delimiter
 DELIMITER $$
