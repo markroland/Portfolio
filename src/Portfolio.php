@@ -71,7 +71,7 @@ class Portfolio{
                 $query .= " ORDER BY start_date ASC";
             }
             else{
-                $query .= " ORDER BY completion_date DESC, start_date DESC";
+                $query .= " ORDER BY completion_date IS NOT NULL, completion_date DESC, start_date DESC";
             }
 
         }elseif($filter == 'id'){
@@ -171,7 +171,7 @@ class Portfolio{
             }
 
             $project['overview']['in_progress'] = 0;
-            if( substr($project['overview']['completion_date'],0,4) == '0000' ){
+            if( is_null($row['completion_date']) || substr($row['completion_date'],0,4) == '0000' ){
                 $project['overview']['in_progress'] = 1;
                 $project['overview']['formatted_date'] = date('F jS, Y', strtotime($row['start_date']));
             }
