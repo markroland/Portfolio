@@ -72,6 +72,7 @@ class Portfolio{
             }
             else{
                 $query .= " ORDER BY completion_date IS NOT NULL, completion_date DESC, start_date DESC";
+                $params = [];
             }
 
         }elseif($filter == 'id'){
@@ -146,6 +147,7 @@ class Portfolio{
         }
 
         // Execute query
+        $rows = [];
         try {
             $query = $this->db_conn->prepare($query);
             if($query->execute($params)){
@@ -156,7 +158,7 @@ class Portfolio{
         }
 
         // Loop through results
-        foreach($rows as $row){
+        foreach( (array) $rows as $row){
 
             $project = array();
             $project['overview'] = $row;
