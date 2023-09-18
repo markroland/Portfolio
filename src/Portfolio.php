@@ -359,7 +359,7 @@ class Portfolio{
 
         try {
             $query = $this->db_conn->prepare(
-                "SELECT related_projects.project_id_A as project_id, project.title, project.url_safe_title
+                "SELECT related_projects.project_id_A as project_id, project.title, project.url_safe_title, publish
                 FROM `related_projects`
                     LEFT JOIN `project` ON project.project_id = related_projects.project_id_A
                 WHERE project_id_B = ?"
@@ -374,7 +374,7 @@ class Portfolio{
 
         try {
             $query = $this->db_conn->prepare(
-                "SELECT related_projects.project_id_B as project_id, project.title, project.url_safe_title
+                "SELECT related_projects.project_id_B as project_id, project.title, project.url_safe_title, publish
                 FROM `related_projects`
                     LEFT JOIN `project` ON project.project_id = related_projects.project_id_B
                 WHERE project_id_A = ?"
