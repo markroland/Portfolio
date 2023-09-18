@@ -3,7 +3,7 @@
 /**
  * Portfolio
  *
- * PHP version 5
+ * PHP version 8, 7, 5
  *
  * @category  Portfolio
  * @package   Portfolio
@@ -20,7 +20,7 @@ namespace MarkRoland;
  *
  * @author Mark Roland (markroland.com)
  * @copyright Mark Roland, 2011
- * @version 2.0
+ * @version 2.2
  *
  **/
 class Portfolio{
@@ -183,6 +183,11 @@ class Portfolio{
             $project['disciplines'] = $this->get_project_disciplines($project['overview']['project_id']);
             $project['mediums'] = $this->get_project_mediums($project['overview']['project_id']);
             $project['related_projects'] = $this->get_related_projects($project['overview']['project_id']);
+
+            // Filter related projects so only published projects are shown
+            $project['related_projects'] = array_filter($project['related_projects'], function($var) {
+                return $var['publish'];
+            });
 
             $projects[] = $project;
         }
