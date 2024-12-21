@@ -4,7 +4,7 @@ A PHP class for managing a portfolio of projects
 
 Mark Roland <first name @ full name dot com>
 
-    Copyright 2011,2016 Mark Roland.
+    Copyright 2011-2024 Mark Roland.
     Released under the MIT license.
 
 ## Installation

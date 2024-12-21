@@ -249,7 +249,7 @@ class Portfolio{
      * @param integer $id A ID of type $key
      * @return array Summary of items
      */
-    function get_project_items($key = 'project_id', $id){
+    function get_project_items($key = 'project_id', $id = 0){
 
         $items = array();
 
