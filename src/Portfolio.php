@@ -163,19 +163,18 @@ class Portfolio{
             $project = array();
             $project['overview'] = $row;
 
-            $completion_date = explode('-', $row['completion_date']);
-            if( substr($row['completion_date'], 4, 6) == '-00-00' ){
-                $project['overview']['formatted_date'] = date('Y', strtotime( str_replace('-00-00', '-01-01', $row['completion_date']) ));
-            }elseif( substr($row['completion_date'], 7, 3) == '-00' ){
-                $project['overview']['formatted_date'] = date('F Y', strtotime( str_replace('-00', '-01', $row['completion_date']) ));
-            }else{
-                $project['overview']['formatted_date'] = date('F jS, Y', strtotime($row['completion_date']));
-            }
-
             $project['overview']['in_progress'] = 0;
-            if( is_null($row['completion_date']) || substr($row['completion_date'],0,4) == '0000' ){
+            if (is_null($row['completion_date']) || substr($row['completion_date'],0,4) == '0000') {
                 $project['overview']['in_progress'] = 1;
                 $project['overview']['formatted_date'] = date('F jS, Y', strtotime($row['start_date']));
+            } else {
+                if( substr($row['completion_date'], 4, 6) == '-00-00' ){
+                    $project['overview']['formatted_date'] = date('Y', strtotime( str_replace('-00-00', '-01-01', $row['completion_date']) ));
+                }elseif( substr($row['completion_date'], 7, 3) == '-00' ){
+                    $project['overview']['formatted_date'] = date('F Y', strtotime( str_replace('-00', '-01', $row['completion_date']) ));
+                }else{
+                    $project['overview']['formatted_date'] = date('F jS, Y', strtotime($row['completion_date']));
+                }
             }
 
             // Get related information
@@ -439,5 +438,4 @@ class Portfolio{
 
         return $hits;
     }
-
 }
