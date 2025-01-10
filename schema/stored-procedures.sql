@@ -22,6 +22,30 @@ BEGIN
 END$$
 # End add_discipline
 
+# Begin get_discipline_by_id
+DROP PROCEDURE IF EXISTS get_discipline_by_id;
+CREATE PROCEDURE get_discipline_by_id(
+    discipline_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `discipline`
+    WHERE discipline_id = discipline_id_var;
+END$$
+# End get_discipline_by_id
+
+# Begin get_discipline_by_word
+DROP PROCEDURE IF EXISTS get_discipline_by_word;
+CREATE PROCEDURE get_discipline_by_word(
+    discipline_word_var VARCHAR(32)
+)
+BEGIN
+    SELECT *
+    FROM `discipline`
+    WHERE discipline = discipline_word_var;
+END$$
+# End get_discipline_by_word
+
 ####################################################################################################
 # Keyword
 ####################################################################################################
@@ -41,6 +65,30 @@ BEGIN
 END$$
 # End add_keyword
 
+# Begin get_keyword_by_id
+DROP PROCEDURE IF EXISTS get_keyword_by_id;
+CREATE PROCEDURE get_keyword_by_id(
+    keyword_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `keyword`
+    WHERE keyword_id = keyword_id_var;
+END$$
+# End get_keyword_by_id
+
+# Begin get_keyword_by_word
+DROP PROCEDURE IF EXISTS get_keyword_by_word;
+CREATE PROCEDURE get_keyword_by_word(
+    keyword_word_var VARCHAR(32)
+)
+BEGIN
+    SELECT *
+    FROM `keyword`
+    WHERE `keyword` = keyword_word_var;
+END$$
+# End get_keyword_by_word
+
 ####################################################################################################
 # Medium
 ####################################################################################################
@@ -59,6 +107,30 @@ BEGIN
     SET medium_id = LAST_INSERT_ID();
 END$$
 # End add_medium
+
+# Begin get_medium_by_id
+DROP PROCEDURE IF EXISTS get_medium_by_id;
+CREATE PROCEDURE get_medium_by_id(
+    medium_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `medium`
+    WHERE medium_id = medium_id_var;
+END$$
+# End get_medium_by_id
+
+# Begin get_medium_by_word
+DROP PROCEDURE IF EXISTS get_medium_by_word;
+CREATE PROCEDURE get_medium_by_word(
+    medium_word_var VARCHAR(32)
+)
+BEGIN
+    SELECT *
+    FROM `medium`
+    WHERE medium = medium_word_var;
+END$$
+# End get_medium_by_word
 
 ####################################################################################################
 # Project
@@ -108,6 +180,30 @@ BEGIN
 END$$
 # End add_project
 
+# Begin get_project_by_id
+DROP PROCEDURE IF EXISTS get_project_by_id;
+CREATE PROCEDURE get_project_by_id(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_by_id
+
+# Begin get_project_by_url_safe_title
+DROP PROCEDURE IF EXISTS get_project_by_url_safe_title;
+CREATE PROCEDURE get_project_by_url_safe_title(
+    url_safe_title_var VARCHAR(32)
+)
+BEGIN
+    SELECT *
+    FROM `project`
+    WHERE url_safe_title = url_safe_title_var;
+END$$
+# End get_project_by_url_safe_title
+
 ####################################################################################################
 # Project Discipline
 ####################################################################################################
@@ -148,6 +244,18 @@ BEGIN
 END$$
 # End add_project_hits
 
+# Begin get_project_hits_by_id
+DROP PROCEDURE IF EXISTS get_project_hits_by_id;
+CREATE PROCEDURE get_project_hits_by_id(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_hits`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_hits_by_id
+
 ####################################################################################################
 # Project Keyword
 ####################################################################################################
@@ -166,6 +274,18 @@ BEGIN
 
 END$$
 # End add_project_keyword
+
+# Begin get_project_keywords
+DROP PROCEDURE IF EXISTS get_project_keywords;
+CREATE PROCEDURE get_project_keywords(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_keyword`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_keywords
 
 ####################################################################################################
 # Project Medium
@@ -186,6 +306,18 @@ BEGIN
 END$$
 # End add_project_medium
 
+# Begin get_project_media
+DROP PROCEDURE IF EXISTS get_project_media;
+CREATE PROCEDURE get_project_media(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_medium`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_media
+
 ####################################################################################################
 # Related Projects
 ####################################################################################################
@@ -204,6 +336,23 @@ BEGIN
 
 END$$
 # End add_related_project
+
+# Begin get_related_projects
+DROP PROCEDURE IF EXISTS get_related_projects;
+CREATE PROCEDURE get_related_projects(
+    project_id_var INT
+)
+BEGIN
+    SELECT DISTINCT
+        CASE
+            WHEN project_id_A = project_id_var THEN project_id_B
+            ELSE project_id_A
+        END AS project_id
+    FROM related_projects
+    WHERE project_id_A = project_id_var OR project_id_B = project_id_var
+    ORDER BY project_id ASC;
+END$$
+# End get_related_projects
 
 # Reset delimiter
 DELIMITER ;
