@@ -257,6 +257,53 @@ END$$
 # End get_project_hits_by_id
 
 ####################################################################################################
+# Project Item
+####################################################################################################
+
+# Begin add_project_item
+DROP PROCEDURE IF EXISTS add_project_item;
+CREATE PROCEDURE add_project_item(
+    project_id_var SMALLINT(3),
+    rank_var SMALLINT (3),
+    purpose_var VARCHAR(32),
+    media_type_var VARCHAR(32),
+    URL_var VARCHAR(120),
+    width_var INT(11),
+    height_var INT(11),
+    title_var VARCHAR(64),
+    description_var VARCHAR(255),
+    OUT item_id INT
+)
+BEGIN
+
+    INSERT INTO `project_item`
+    SET project_id = project_id_var,
+        rank = rank_var,
+        purpose = purpose_var,
+        media_type = media_type_var,
+        `URL` = URL_var,
+        width = width_var,
+        height = height_var,
+        title = title_var,
+        `description` = description_var;
+
+    SET item_id = LAST_INSERT_ID();
+END$$
+# End add_project_item
+
+# Begin get_project_items
+DROP PROCEDURE IF EXISTS get_project_items;
+CREATE PROCEDURE get_project_items(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_item`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_items
+
+####################################################################################################
 # Project Keyword
 ####################################################################################################
 
