@@ -188,6 +188,9 @@ class Portfolio{
                 return $var['publish'];
             });
 
+            // Make sure items are zero-indexed
+            $project['related_projects'] = array_values($project['related_projects']);
+
             $projects[] = $project;
         }
 
