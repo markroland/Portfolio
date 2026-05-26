@@ -38,6 +38,38 @@ class Portfolio{
     }
 
     /**
+     * Get the discipline admin interface
+     * @return Discipline Discipline data interface
+     */
+    function get_discipline_admin($database_name = NULL){
+        return new Discipline($this->db_conn, $database_name);
+    }
+
+    /**
+     * Get the keyword admin interface
+     * @return Keyword Keyword data interface
+     */
+    function get_keyword_admin($database_name = NULL){
+        return new Keyword($this->db_conn, $database_name);
+    }
+
+    /**
+     * Get the medium admin interface
+     * @return Medium Medium data interface
+     */
+    function get_medium_admin($database_name = NULL){
+        return new Medium($this->db_conn, $database_name);
+    }
+
+    /**
+     * Get the project admin interface
+     * @return Project Project data interface
+     */
+    function get_project_admin($database_name = NULL){
+        return new Project($this->db_conn, $database_name);
+    }
+
+    /**
      * Get all projects
      * Is this necessary?
      * @return array Summary of project information
