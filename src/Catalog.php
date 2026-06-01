@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Portfolio
+ * Catalog
  *
  * PHP version 8, 7, 5
  *
@@ -13,17 +13,17 @@
  * @link      https://github.com/markroland/composer-boilerplate
  **/
 
-namespace MarkRoland;
+namespace MarkRoland\Portfolio;
 
 /**
- * Portfolio
+ * Catalog
  *
  * @author Mark Roland (markroland.com)
  * @copyright Mark Roland, 2011
- * @version 2.2
+ * @version 3
  *
  **/
-class Portfolio{
+class Catalog{
 
     /**
      * @var Database Connection
@@ -35,38 +35,6 @@ class Portfolio{
      */
     function __construct(\PDO $pdo_connection){
         $this->db_conn = $pdo_connection;
-    }
-
-    /**
-     * Get the discipline admin interface
-     * @return Discipline Discipline data interface
-     */
-    function get_discipline_admin($database_name = NULL){
-        return new Discipline($this->db_conn, $database_name);
-    }
-
-    /**
-     * Get the keyword admin interface
-     * @return Keyword Keyword data interface
-     */
-    function get_keyword_admin($database_name = NULL){
-        return new Keyword($this->db_conn, $database_name);
-    }
-
-    /**
-     * Get the medium admin interface
-     * @return Medium Medium data interface
-     */
-    function get_medium_admin($database_name = NULL){
-        return new Medium($this->db_conn, $database_name);
-    }
-
-    /**
-     * Get the project admin interface
-     * @return Project Project data interface
-     */
-    function get_project_admin($database_name = NULL){
-        return new Project($this->db_conn, $database_name);
     }
 
     /**

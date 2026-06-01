@@ -1,6 +1,6 @@
 <?php
 
-class PortfolioTest extends PHPUnit_Framework_TestCase {
+class CatalogTest extends PHPUnit_Framework_TestCase {
 
     protected $Portfolio;
 
@@ -16,7 +16,7 @@ class PortfolioTest extends PHPUnit_Framework_TestCase {
             error_log('ERROR: ' . $e->getMessage() . "\n");
         }
 
-        $this->Portfolio = new MarkRoland\Portfolio($pdo_connection);
+        $this->Portfolio = new MarkRoland\Portfolio\Catalog($pdo_connection);
     }
 
     public function test_get_all_projects() {

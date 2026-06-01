@@ -10,14 +10,14 @@ Mark Roland <first name @ full name dot com>
 ## Installation
 
 ```sh
-    composer require markroland/portfolio
+composer require markroland/portfolio
 ```
 
 ## Usage
 
 ```php
-    $Portfolio = new MarkRoland\Portfolio;
-    print($Portfolio>get_all_projects());
+$Portfolio = new MarkRoland\Portfolio\Catalog;
+print($Portfolio>get_all_projects());
 ```
 
 The "examples" folder in this package contains sample code.
@@ -27,27 +27,27 @@ The "examples" folder in this package contains sample code.
 ### Build using Phing
 
 ```sh
-    phing
+phing
 ```
 
 ```sh
-    phing phpdoc
+phing phpdoc
 ```
 
 ```sh
-    phing phpcs
+phing phpcs
 ```
 
 ### PHPUnit
 
 ```sh
-    phpunit --bootstrap tests/bootstrap.php tests
+phpunit --bootstrap tests/bootstrap.php tests
 ```
 
 ### Code Coverage
 
 ```sh
-    phpunit --coverage-html ./report ./tests
+phpunit --coverage-html ./report ./tests
 ```
 
 ### PHP Documentation
@@ -56,11 +56,11 @@ PHP Documentation is compiled using [phpDocumentor](http://www.phpdoc.org), whic
 to be installed globally on the server. It uses phpdoc.dist.xml for runtime configuration.
 
 ```sh
-    phpdoc
+phpdoc
 ```
 
 ### Code Sniff
 
 ```sh
-    phpcs -n --report-width=100 ./src
+phpcs -n --report-width=100 ./src
 ```

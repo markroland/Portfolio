@@ -2,7 +2,7 @@
 <phpunit bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="app">
-            <file>tests/PortfolioTest.php</file>
+            <file>tests/CatalogTest.php</file>
         </testsuite>
     </testsuites>
     <filter>

@@ -13,14 +13,14 @@
  * @link      https://github.com/markroland/composer-boilerplate
  **/
 
-namespace MarkRoland;
+namespace MarkRoland\Portfolio;
 
 /**
  * Discipline
  *
  * @author Mark Roland (markroland.com)
  * @copyright Mark Roland, 2011
- * @version 2.2
+ * @version 3
  *
  **/
 class Discipline{
