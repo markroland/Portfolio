@@ -64,6 +64,7 @@ class Catalog{
         if($filter == 'all'){
 
             $query .= " ORDER BY title ASC";
+            $params = [];
 
         }elseif($filter == 'date'){
 
