@@ -127,6 +127,13 @@ class Catalog{
 
             $query .= " ORDER BY rand()";
 
+        }elseif($filter == 'recency') {
+
+            $query = "SELECT *
+                FROM `project`
+                ORDER BY COALESCE(completion_date, start_date) DESC, start_date DESC";
+            $params = [];
+
         }elseif($filter == 'title'){
 
             if( $filter_param != 'ASC' && $filter_param != 'DESC' ){
