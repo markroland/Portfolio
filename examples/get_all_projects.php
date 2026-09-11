@@ -11,10 +11,10 @@ try {
 }
 
 // Include class (if not using Composer's vendor/autoload.php)
-require __DIR__ . '/../src/Portfolio.php';
+require __DIR__ . '/../src/Catalog.php';
 
 // Create new object
-$Portfolio = new MarkRoland\Portfolio($pdo_connection);
+$Portfolio = new MarkRoland\Portfolio\Catalog($pdo_connection);
 
 // List Webhooks
 $projects = $Portfolio->get_all_projects();

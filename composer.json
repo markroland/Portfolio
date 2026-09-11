@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Mark Roland",
-            "homepage": "http://markroland.com"
+            "homepage": "https://markroland.com"
         }
     ],
     "require-dev": {
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MarkRoland\\": "src/"
+            "MarkRoland\\Portfolio\\": "src/"
         }
     }
 }

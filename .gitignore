@@ -1,6 +1,7 @@
 # Generated folders
-/docs
-/report
+/docs/
+/report/
+/vendor/
 
 # Notes
 /log.txt

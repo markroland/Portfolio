@@ -22,6 +22,41 @@ BEGIN
 END$$
 # End add_discipline
 
+# Begin update_discipline
+DROP PROCEDURE IF EXISTS update_discipline;
+CREATE PROCEDURE update_discipline(
+    discipline_id_var INT,
+    discipline_var VARCHAR(32)
+)
+BEGIN
+    UPDATE `discipline`
+    SET discipline = discipline_var
+    WHERE discipline_id = discipline_id_var;
+END$$
+# End update_discipline
+
+# Begin delete_discipline
+DROP PROCEDURE IF EXISTS delete_discipline;
+CREATE PROCEDURE delete_discipline(
+    discipline_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `discipline`
+    WHERE discipline_id = discipline_id_var;
+END$$
+# End delete_discipline
+
+# Begin get_disciplines
+DROP PROCEDURE IF EXISTS get_disciplines;
+CREATE PROCEDURE get_disciplines()
+BEGIN
+    SELECT *
+    FROM `discipline`
+    ORDER BY discipline ASC;
+END$$
+# End get_disciplines
+
 # Begin get_discipline_by_id
 DROP PROCEDURE IF EXISTS get_discipline_by_id;
 CREATE PROCEDURE get_discipline_by_id(
@@ -65,6 +100,41 @@ BEGIN
 END$$
 # End add_keyword
 
+# Begin update_keyword
+DROP PROCEDURE IF EXISTS update_keyword;
+CREATE PROCEDURE update_keyword(
+    keyword_id_var INT,
+    keyword_var VARCHAR(32)
+)
+BEGIN
+    UPDATE `keyword`
+    SET keyword = keyword_var
+    WHERE keyword_id = keyword_id_var;
+END$$
+# End update_keyword
+
+# Begin delete_keyword
+DROP PROCEDURE IF EXISTS delete_keyword;
+CREATE PROCEDURE delete_keyword(
+    keyword_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `keyword`
+    WHERE keyword_id = keyword_id_var;
+END$$
+# End delete_keyword
+
+# Begin get_keywords
+DROP PROCEDURE IF EXISTS get_keywords;
+CREATE PROCEDURE get_keywords()
+BEGIN
+    SELECT *
+    FROM `keyword`
+    ORDER BY keyword ASC;
+END$$
+# End get_keywords
+
 # Begin get_keyword_by_id
 DROP PROCEDURE IF EXISTS get_keyword_by_id;
 CREATE PROCEDURE get_keyword_by_id(
@@ -107,6 +177,41 @@ BEGIN
     SET medium_id = LAST_INSERT_ID();
 END$$
 # End add_medium
+
+# Begin update_medium
+DROP PROCEDURE IF EXISTS update_medium;
+CREATE PROCEDURE update_medium(
+    medium_id_var INT,
+    medium_var VARCHAR(32)
+)
+BEGIN
+    UPDATE `medium`
+    SET medium = medium_var
+    WHERE medium_id = medium_id_var;
+END$$
+# End update_medium
+
+# Begin delete_medium
+DROP PROCEDURE IF EXISTS delete_medium;
+CREATE PROCEDURE delete_medium(
+    medium_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `medium`
+    WHERE medium_id = medium_id_var;
+END$$
+# End delete_medium
+
+# Begin get_media
+DROP PROCEDURE IF EXISTS get_media;
+CREATE PROCEDURE get_media()
+BEGIN
+    SELECT *
+    FROM `medium`
+    ORDER BY medium ASC;
+END$$
+# End get_media
 
 # Begin get_medium_by_id
 DROP PROCEDURE IF EXISTS get_medium_by_id;
@@ -180,6 +285,71 @@ BEGIN
 END$$
 # End add_project
 
+# Begin update_project
+DROP PROCEDURE IF EXISTS update_project;
+CREATE PROCEDURE update_project(
+    project_id_var SMALLINT(3),
+    publish_var TINYINT(1),
+    grade_var FLOAT(3,2),
+    start_date_var DATE,
+    completion_date_var DATE,
+    title_var VARCHAR(64),
+    url_safe_title_var VARCHAR(32),
+    synopsis_var TEXT,
+    description_var TEXT,
+    tutorial_var TEXT,
+    open_source_var TINYINT(1),
+    location_var VARCHAR(32),
+    width_inches_var FLOAT(7,4),
+    height_inches_var FLOAT(7,4),
+    depth_inches_var FLOAT(7,4),
+    weight_lbs_var FLOAT(7,4)
+)
+BEGIN
+
+    UPDATE `project`
+    SET publish = publish_var,
+        grade = grade_var,
+        start_date = start_date_var,
+        completion_date = completion_date_var,
+        title = title_var,
+        url_safe_title = url_safe_title_var,
+        synopsis = synopsis_var,
+        description = description_var,
+        tutorial = tutorial_var,
+        open_source = open_source_var,
+        location = location_var,
+        width_inches = width_inches_var,
+        height_inches = height_inches_var,
+        depth_inches = depth_inches_var,
+        weight_lbs = weight_lbs_var
+    WHERE project_id = project_id_var;
+
+END$$
+# End update_project
+
+# Begin delete_project
+DROP PROCEDURE IF EXISTS delete_project;
+CREATE PROCEDURE delete_project(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project`
+    WHERE project_id = project_id_var;
+END$$
+# End delete_project
+
+# Begin get_projects_admin
+DROP PROCEDURE IF EXISTS get_projects_admin;
+CREATE PROCEDURE get_projects_admin()
+BEGIN
+    SELECT *
+    FROM `project`
+    ORDER BY title ASC;
+END$$
+# End get_projects_admin
+
 # Begin get_project_by_id
 DROP PROCEDURE IF EXISTS get_project_by_id;
 CREATE PROCEDURE get_project_by_id(
@@ -222,6 +392,30 @@ BEGIN
 
 END$$
 # End add_project_discipline
+
+# Begin delete_project_disciplines
+DROP PROCEDURE IF EXISTS delete_project_disciplines;
+CREATE PROCEDURE delete_project_disciplines(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project_discipline`
+    WHERE project_id = project_id_var;
+END$$
+# End delete_project_disciplines
+
+# Begin get_project_disciplines
+DROP PROCEDURE IF EXISTS get_project_disciplines;
+CREATE PROCEDURE get_project_disciplines(
+    project_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_discipline`
+    WHERE project_id = project_id_var;
+END$$
+# End get_project_disciplines
 
 ####################################################################################################
 # Project Hits
@@ -303,6 +497,82 @@ BEGIN
 END$$
 # End get_project_items
 
+# Begin get_project_item_by_id
+DROP PROCEDURE IF EXISTS get_project_item_by_id;
+CREATE PROCEDURE get_project_item_by_id(
+    item_id_var INT
+)
+BEGIN
+    SELECT *
+    FROM `project_item`
+    WHERE item_id = item_id_var;
+END$$
+# End get_project_item_by_id
+
+# Begin get_project_item_purposes
+DROP PROCEDURE IF EXISTS get_project_item_purposes;
+CREATE PROCEDURE get_project_item_purposes()
+BEGIN
+    SELECT DISTINCT purpose
+    FROM `project_item`
+    WHERE purpose <> ''
+    ORDER BY purpose ASC;
+END$$
+# End get_project_item_purposes
+
+# Begin update_project_item
+DROP PROCEDURE IF EXISTS update_project_item;
+CREATE PROCEDURE update_project_item(
+    item_id_var INT,
+    project_id_var SMALLINT(3),
+    rank_var SMALLINT (3),
+    purpose_var VARCHAR(32),
+    media_type_var VARCHAR(32),
+    URL_var VARCHAR(120),
+    width_var INT(11),
+    height_var INT(11),
+    title_var VARCHAR(64),
+    description_var VARCHAR(255)
+)
+BEGIN
+    UPDATE `project_item`
+    SET project_id = project_id_var,
+        rank = rank_var,
+        purpose = purpose_var,
+        media_type = media_type_var,
+        `URL` = URL_var,
+        width = width_var,
+        height = height_var,
+        title = title_var,
+        `description` = description_var
+    WHERE item_id = item_id_var;
+END$$
+# End update_project_item
+
+# Begin delete_project_item
+DROP PROCEDURE IF EXISTS delete_project_item;
+CREATE PROCEDURE delete_project_item(
+    item_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project_item`
+    WHERE item_id = item_id_var;
+END$$
+# End delete_project_item
+
+# Begin delete_project_items
+DROP PROCEDURE IF EXISTS delete_project_items;
+CREATE PROCEDURE delete_project_items(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project_item`
+    WHERE project_id = project_id_var;
+END$$
+# End delete_project_items
+
 ####################################################################################################
 # Project Keyword
 ####################################################################################################
@@ -321,6 +591,18 @@ BEGIN
 
 END$$
 # End add_project_keyword
+
+# Begin delete_project_keywords
+DROP PROCEDURE IF EXISTS delete_project_keywords;
+CREATE PROCEDURE delete_project_keywords(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project_keyword`
+    WHERE project_id = project_id_var;
+END$$
+# End delete_project_keywords
 
 # Begin get_project_keywords
 DROP PROCEDURE IF EXISTS get_project_keywords;
@@ -353,6 +635,18 @@ BEGIN
 END$$
 # End add_project_medium
 
+# Begin delete_project_media
+DROP PROCEDURE IF EXISTS delete_project_media;
+CREATE PROCEDURE delete_project_media(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `project_medium`
+    WHERE project_id = project_id_var;
+END$$
+# End delete_project_media
+
 # Begin get_project_media
 DROP PROCEDURE IF EXISTS get_project_media;
 CREATE PROCEDURE get_project_media(
@@ -383,6 +677,18 @@ BEGIN
 
 END$$
 # End add_related_project
+
+# Begin delete_related_projects
+DROP PROCEDURE IF EXISTS delete_related_projects;
+CREATE PROCEDURE delete_related_projects(
+    project_id_var INT
+)
+BEGIN
+    DELETE
+    FROM `related_projects`
+    WHERE project_id_A = project_id_var OR project_id_B = project_id_var;
+END$$
+# End delete_related_projects
 
 # Begin get_related_projects
 DROP PROCEDURE IF EXISTS get_related_projects;
