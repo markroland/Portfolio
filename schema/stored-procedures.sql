@@ -461,7 +461,7 @@ CREATE PROCEDURE add_project_item(
     rank_var SMALLINT (3),
     purpose_var VARCHAR(32),
     media_type_var VARCHAR(32),
-    URL_var VARCHAR(120),
+    URL_var VARCHAR(255),
     width_var INT(11),
     height_var INT(11),
     title_var VARCHAR(64),

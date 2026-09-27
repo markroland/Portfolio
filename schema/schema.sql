@@ -103,7 +103,7 @@ CREATE TABLE `project_item` (
   `rank` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `purpose` varchar(32) NOT NULL,
   `media_type` varchar(32) NOT NULL DEFAULT '',
-  `URL` varchar(120) NOT NULL DEFAULT '',
+  `URL` varchar(255) NOT NULL DEFAULT '',
   `width` int(11) DEFAULT '0',
   `height` int(11) DEFAULT '0',
   `title` varchar(64) NOT NULL DEFAULT '',
