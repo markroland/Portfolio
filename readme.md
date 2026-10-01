@@ -4,7 +4,7 @@ A PHP class for managing a portfolio of projects
 
 Mark Roland <first name @ full name dot com>
 
-    Copyright 2011-2024 Mark Roland.
+    Copyright 2011-2026 Mark Roland.
     Released under the MIT license.
 
 ## Installation
@@ -27,13 +27,13 @@ The "examples" folder in this package contains sample code.
 ### PHPUnit
 
 ```sh
-phpunit --bootstrap tests/bootstrap.php tests
+./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
 ```
 
 ### Code Coverage
 
 ```sh
-phpunit --coverage-html ./report ./tests
+./vendor/bin/phpunit --coverage-html ./report ./tests
 ```
 
 ### PHP Documentation
@@ -42,11 +42,11 @@ PHP Documentation is compiled using [phpDocumentor](http://www.phpdoc.org), whic
 to be installed globally on the server. It uses phpdoc.dist.xml for runtime configuration.
 
 ```sh
-phpdoc
+./vendor/bin/phpdoc
 ```
 
 ### Code Sniff
 
 ```sh
-phpcs -n --report-width=100 ./src
+./vendor/bin/phpcs -n --report-width=100 ./src
 ```
