@@ -24,20 +24,6 @@ The "examples" folder in this package contains sample code.
 
 ## Build
 
-### Build using Phing
-
-```sh
-phing
-```
-
-```sh
-phing phpdoc
-```
-
-```sh
-phing phpcs
-```
-
 ### PHPUnit
 
 ```sh
