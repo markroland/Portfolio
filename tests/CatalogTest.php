@@ -1,10 +1,12 @@
 <?php
 
-class CatalogTest extends PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class CatalogTest extends TestCase {
 
     protected $Portfolio;
 
-    public function setup() {
+    protected function setUp(): void {
 
         // Connect to database using PDO
         $pdo_connection = null;

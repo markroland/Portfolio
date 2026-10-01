@@ -11,8 +11,10 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "~5",
-        "squizlabs/php_codesniffer": "~2"
+        "phpdocumentor/shim": "^3.10",
+        "phpunit/phpunit": "^11.5",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "require": {
         "php": ">=5.3.0"
@@ -20,6 +22,11 @@
     "autoload": {
         "psr-4": {
             "MarkRoland\\Portfolio\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpdocumentor/shim": true
         }
     }
 }
